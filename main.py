@@ -27,16 +27,16 @@ for file in filter(lambda x: x.endswith(".raw"), os.listdir(".")):
     ct_image_layered = np.reshape(ct_image_as_vector, (layers_count, layer_size))
 
     # get the image and plot it
-    for layer in ct_image_layered:
+    for i, layer in enumerate(ct_image_layered):
         #layer.byteswap(inplace=True)        
         #Normalize function
         if (not isMask):
-            oldMin = layer.min
-            oldMax = layer.max
+            oldMin = layer.min()
+            oldMax = layer.max()
             oldRange = (oldMax - oldMin) 
             normalize = lambda x: int((((x - oldMin) * newRange) / oldRange) + newMin)
             npNormalize = np.vectorize(normalize)
             layer = npNormalize(layer).astype(np.int8)
         layer = np.reshape(layer, (512, 512))
         image = Image.fromarray(layer, "L") 
-        image.save("{0}.png".format(file), "PNG")
+        image.save("{0}_{1}.png".format(file, i), "PNG")
