@@ -20,9 +20,8 @@ def PerformPreprocessing(log_file_path):
         ct_image_layered = np.reshape(ct_image_as_vector, (layers_count, layer_size))
 
         # get the image and plot it
-        if isMask:
-            for i, layer in enumerate(ct_image_layered):
-                ExecuteWithLogs("Preprocessing for layer #{0}".format(i), log_file_path, lambda _ = None: PerformPreprocessingForSingleLayer(file, i, layer, isMask))   
+        for i, layer in enumerate(ct_image_layered):
+            ExecuteWithLogs("Preprocessing for layer #{0}".format(i), log_file_path, lambda _ = None: PerformPreprocessingForSingleLayer(file, i, layer, isMask))   
 
 def PerformPreprocessingForSingleLayer(file, i, layer, isMask):
     #layer.byteswap(inplace=True)        
