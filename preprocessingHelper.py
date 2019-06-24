@@ -4,7 +4,7 @@ from logHelper import ExecuteWithLogs
 import os
 
 def PerformPreprocessing(log_file_path): 
-    files = filter(lambda x: x.endswith(".raw"), os.listdir("."))   
+    files = list(filter(lambda x: x.endswith(".raw"), os.listdir(".")))   
     for i, file in enumerate(files):
         print("{0}/{1} {2}".format(i, len(files), file))
         f = open(file, 'rb')
