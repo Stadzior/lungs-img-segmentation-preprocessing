@@ -6,24 +6,28 @@ import os
 def PerformPreprocessing(files, log_file_path): 
     for i, file in enumerate(files):
         print("{0}/{1} {2}".format(i, len(files), file))
-        f = open(file, 'rb')
-        img_str = f.read()
+        PerformPreprocessingForSingleFile(file, log_file_path)
 
-        isMask = "MM" in file
+def PerformPreprocessingForSingleFile(file, log_file_path):
+    f = open(file, 'rb')
+    img_str = f.read()
 
-        # converting to a int8/int16 numpy array
-        ct_image_as_vector = np.fromstring(img_str, dtype=np.int8) if isMask else np.fromstring(img_str, np.int16)
+    isMask = "MM" in file
 
-        #layering
-        layer_dimensions = (512, 512)
-        layer_size = layer_dimensions[0]*layer_dimensions[1]
-        layers_count = int(len(ct_image_as_vector) / layer_size)
-        ct_image_layered = np.reshape(ct_image_as_vector, (layers_count, layer_size))
+    # converting to a int8/int16 numpy array
+    ct_image_as_vector = np.fromstring(img_str, dtype=np.int8) if isMask else np.fromstring(img_str, np.int16)
 
-        # get the image and plot it
-        for i, layer in enumerate(ct_image_layered):            
-            print("{0}/{1}".format(i, len(ct_image_layered)))
-            ExecuteWithLogs("Preprocessing for layer #{0}".format(i), log_file_path, lambda _ = None: PerformPreprocessingForSingleLayer(file, i, layer, isMask))   
+    #layering
+    layer_dimensions = (512, 512)
+    layer_size = layer_dimensions[0]*layer_dimensions[1]
+    layers_count = int(len(ct_image_as_vector) / layer_size)
+    ct_image_layered = np.reshape(ct_image_as_vector, (layers_count, layer_size))
+
+    # get the image and plot it
+    for i, layer in enumerate(ct_image_layered):            
+        print("{0}/{1}".format(i, len(ct_image_layered)))
+        ExecuteWithLogs("Preprocessing for layer #{0}".format(i), log_file_path, lambda _ = None: PerformPreprocessingForSingleLayer(file, i, layer, isMask))   
+
 
 def PerformPreprocessingForSingleLayer(file, i, layer, isMask):
     #layer.byteswap(inplace=True)        
