@@ -3,8 +3,7 @@ from PIL import Image
 from logHelper import ExecuteWithLogs
 import os
 
-def PerformPreprocessing(log_file_path): 
-    files = list(filter(lambda x: x.endswith(".raw"), os.listdir(".")))   
+def PerformPreprocessing(files, log_file_path): 
     for i, file in enumerate(files):
         print("{0}/{1} {2}".format(i, len(files), file))
         f = open(file, 'rb')
@@ -48,3 +47,7 @@ def PerformPreprocessingForSingleLayer(file, i, layer, isMask):
     layer = np.reshape(layer, (512, 512))
     image = Image.fromarray(layer.astype(np.uint8), "L") 
     image.save("{0}_{1}.png".format(file, i), "PNG")
+
+def SliceListEvenly(source_list, slice_length):
+    for i in range(0, len(source_list), slice_length):
+        yield source_list[i:i + slice_length]
