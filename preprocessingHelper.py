@@ -3,8 +3,10 @@ from PIL import Image
 from logHelper import ExecuteWithLogs
 import os
 
-def PerformPreprocessing(log_file_path):    
-    for file in filter(lambda x: x.endswith(".raw"), os.listdir(".")):
+def PerformPreprocessing(log_file_path): 
+    files = filter(lambda x: x.endswith(".raw"), os.listdir("."))   
+    for i, file in enumerate(files):
+        print("{0}/{1} {2}".format(i, len(files), file))
         f = open(file, 'rb')
         img_str = f.read()
 
@@ -20,7 +22,8 @@ def PerformPreprocessing(log_file_path):
         ct_image_layered = np.reshape(ct_image_as_vector, (layers_count, layer_size))
 
         # get the image and plot it
-        for i, layer in enumerate(ct_image_layered):
+        for i, layer in enumerate(ct_image_layered):            
+            print("{0}/{1}".format(i, len(ct_image_layered)))
             ExecuteWithLogs("Preprocessing for layer #{0}".format(i), log_file_path, lambda _ = None: PerformPreprocessingForSingleLayer(file, i, layer, isMask))   
 
 def PerformPreprocessingForSingleLayer(file, i, layer, isMask):
