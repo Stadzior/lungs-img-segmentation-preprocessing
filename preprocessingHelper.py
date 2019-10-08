@@ -20,7 +20,7 @@ def PerformPreprocessingForSingleFile(file, log_file_path):
     ct_image_as_vector = np.fromstring(img_str, dtype=np.dtype(bool)) if isMask else np.fromstring(img_str, dtype=np.int16)
 
     #layering
-    layer_dimensions = (512, 512)
+    layer_dimensions = TARGET_SIZE
     layer_size = layer_dimensions[0]*layer_dimensions[1]
     layers_count = int(len(ct_image_as_vector) / layer_size)
     ct_image_layered = np.reshape(ct_image_as_vector, (layers_count, layer_size))
@@ -31,8 +31,7 @@ def PerformPreprocessingForSingleFile(file, log_file_path):
         ExecuteWithLogs("Preprocessing for layer #{0}".format(i), log_file_path, lambda _ = None: PerformPreprocessingForSingleLayer(file, i, layer, isMask))   
 
 
-def PerformPreprocessingForSingleLayer(file, i, layer, isMask):
-    #layer.byteswap(inplace=True)        
+def PerformPreprocessingForSingleLayer(file, i, layer, isMask):    
     #Normalize function
     if (isMask):  
         layer = layer * 255 #https://stackoverflow.com/questions/47290668/image-fromarray-just-produces-black-image

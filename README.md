@@ -1,25 +1,17 @@
-# Lungs image segmentation U-net
-Repo created for learning and experimenting with Keras AI framework.
+# Lungs image segmentation Preprocessing
+Repo created as a part of master degree thesis:<br />
+"Segmentation of limited opacity CT lung images with the use of convolutional neural networks".<br />
+Preprocessing part of the solution, it converts raw files into set of png files representing mhd/raw layers. <br />
+The following project was tested on Python 3.6.8 64bit on Windows 10.
+<b>Output files:</b> 
 
-## Quick config:  
-1. Download Miniconda for Windows from [here](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe).  
-2. Install Miniconda  
-   - Install for **Just Me**  
-   - Add Anaconda to my **PATH enviromantal variables**   
-   - **Untick** "*Register Anaconda as my default Python 3.7*" (If you have another python copy installed)     
-3. In cmd: 
-   - `conda create -n tfgpu tensorflow-gpu SimpleITK pillow keras matplotlib scikit-image pip opencv`  
-   - `activate tfgpu`    
-4. Run `main.py` using `tfgpu` pyenv with cmd or your favorite IDE (e.g. VS Code, Spyder, Atom) configured to work with python envs.
+## Quickstart:  
+1. Prepare input files in the following format: <b>16bit .raw file</b> with CT images OR <b>1bit .raw file</b> with binary mask (to indicate that this is a mask you need to add "MM" in the file name).
+2. Copy files to `.\data`.
+3. Run [main.py](main.py).
+4. The progress should be visible on output window.
+5. After the run termination you should find your <b>set of 8bit .png files</b> in `.\data`.
 
-## Useful cmds:
-1. List envs: `conda info --envs`
-2. Install package on env: `conda install -n env_name pypng`
-3. Add channel to conda: `conda config --env --add channels channel_name`
-4. Remove channel from conda: `conda config --remove channels channel_name`
-5. Show channels: `conda config --show channels`
-
-## Installing pip modules within miniconda env:
-1. Install pip inside your env: `conda install -n env_name pip`
-2. Get inside env with Anaconda prompt: `conda activate env_name`
-3. Install module using pip inside env: `pip install module_name`
+A full recording of the run can be found in [log.txt](data\log.txt).<br />
+<b>CalculateMaskSize</b> in [preprocessingHelper.py](preprocessingHelper.py) can be used to calculate surface area of a lungs on a certain layer according to binary mask (png file).<br />
+<b>CalculateMaskSizeLevels</b> in [preprocessingHelper.py](preprocessingHelper.py) can be used to split output .png files into ranges of masks of certain calculated surface area (useful in you want to distinguish boundary lung areas).
