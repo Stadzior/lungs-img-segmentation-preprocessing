@@ -7,7 +7,7 @@ TARGET_SIZE = (512, 512)
 
 def PerformPreprocessing(files, log_file_path): 
     for i, file in enumerate(files):
-        print("{0}/{1} {2}".format(i, len(files), file))
+        print("{0}/{1} {2}".format(i+1, len(files), file))
         PerformPreprocessingForSingleFile(file, log_file_path)
 
 def PerformPreprocessingForSingleFile(file, log_file_path):
@@ -27,7 +27,7 @@ def PerformPreprocessingForSingleFile(file, log_file_path):
 
     # get the image and plot it
     for i, layer in enumerate(ct_image_layered):            
-        print("{0}/{1}".format(i, len(ct_image_layered)))
+        print("{0}/{1}".format(i+1, len(ct_image_layered)))
         ExecuteWithLogs("Preprocessing for layer #{0}".format(i), log_file_path, lambda _ = None: PerformPreprocessingForSingleLayer(file, i, layer, isMask))   
 
 

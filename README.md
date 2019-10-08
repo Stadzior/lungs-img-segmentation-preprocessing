@@ -2,6 +2,7 @@
 Repo created as a part of master degree thesis:<br />
 "Segmentation of limited opacity CT lung images with the use of convolutional neural networks".<br />
 Preprocessing part of the solution, it converts raw files into set of png files representing mhd/raw layers. <br />
+If you already have png files to work on just skip to [lungs-img-segmentation-unet]() repo.<br />
 The following project was tested on Python 3.6.8 64bit on Windows 10.
 
 ## Quickstart:  
