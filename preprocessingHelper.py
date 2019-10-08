@@ -49,7 +49,7 @@ def PerformPreprocessingForSingleLayer(file, i, layer, isMask):
         normalize = lambda x: int((((x - oldMin) * newRange) / oldRange) + newMin)
         npNormalize = np.vectorize(normalize)
         layer = npNormalize(layer)
-    layer = np.reshape(layer, (512, 512))
+    layer = np.reshape(layer, TARGET_SIZE)
     image = Image.fromarray(layer.astype(np.uint8), "L") 
     image.save("{0}_{1}.png".format(file, i), "PNG")
 
