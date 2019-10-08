@@ -5,6 +5,7 @@ Preprocessing part of the solution, it converts raw files into set of png files 
 If you already have png files to work on just skip to [lungs-img-segmentation-unet](https://github.com/Stadzior/lungs-img-segmentation-unet) repo.<br />
 The following project was tested on Python 3.6.8 64bit on Windows 10.
 
+![title image](https://github.com/Stadzior/lungs-img-segmentation-preprocessing/blob/master/lungs-img-segmentation-preprocessing.png)
 ## Quickstart:  
 1. Prepare input files in the following format: <b>16bit .raw file</b> with CT images OR <b>1bit .raw file</b> with binary mask (to indicate that this is a mask you need to add "MM" in the file name).
 2. Copy files to `.\data`.
