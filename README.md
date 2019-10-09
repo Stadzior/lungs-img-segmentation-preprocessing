@@ -7,7 +7,7 @@ The following project was tested on Python 3.6.8 64bit on Windows 10.
 
 ![title image](https://github.com/Stadzior/lungs-img-segmentation-preprocessing/blob/master/lungs-img-segmentation-preprocessing.png)
 ## Quickstart:  
-1. Prepare input files in the following format: <b>16bit .raw file</b> with CT images OR <b>1bit .raw file</b> with binary mask (to indicate that this is a mask you need to add "MM" in the file name).
+1. Prepare input files in the following format: <b>16bit .raw file</b> with CT images OR <b>1bit .raw file</b> with binary masks (to indicate that this is a mask you need to add "MM" in the file name).
 2. Copy files to `.\data`.
 3. Run [main.py](main.py).
 4. The progress should be visible on output window.
