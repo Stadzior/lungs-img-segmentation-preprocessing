@@ -1,6 +1,4 @@
 # Lungs image segmentation Preprocessing
-Repo created as a part of master degree thesis:<br />
-"Segmentation of limited opacity CT lung images with the use of convolutional neural networks".<br />
 Preprocessing part of the solution, it converts raw files into set of png files representing mhd/raw layers. <br />
 If you already have png files to work on just skip to [lungs-img-segmentation-unet](https://github.com/Stadzior/lungs-img-segmentation-unet) repo.<br />
 The following project was tested on Python 3.6.8 64bit on Windows 10.
@@ -18,6 +16,12 @@ A full recording of the run can be found in [log.txt](data\log.txt).<br />
 <b>CalculateMaskSizeLevels</b> in [preprocessingHelper.py](preprocessingHelper.py) can be used to split output .png files into ranges of masks of certain calculated surface area (useful in you want to distinguish boundary lung areas).
 
 ## DISCLAIMER
+Solution created as a part of my master degree thesis. If you want to use any part of those three solutions please add a reference to the following:<br />
+<i>Kamil Stadryniak, "Segmentation of limited opacity CT lung images with the use of convolutional neural networks", Lodz University of Technology, 2019</i><br />
+
+Another parts of the solution can be found here:<br />
+[lungs-img-segmentation-unet](https://github.com/Stadzior/lungs-img-segmentation-unet)<br />
+[lungs-img-segmentation-postprocessing](https://github.com/Stadzior/lungs-img-segmentation-postprocessing)
 
 Examples included in `.\data` are a small part of larger dataset gathered by Centre de Recherche en Neurosciences de Lyon in cooperation with Université Claude Bernard Lyon 1, INSA, Centre de Recherche en Acquisition et Traitement de l'Image pour la Santé.
 
